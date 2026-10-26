@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第1章 1.2 現代人の生活状況の問題点</title>
+<style>
+:root{--c:#1F5F6B;--cl:#e4eff1;--red:#c62828;--bg:#f3f7f8;--tx:#222}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;background:var(--bg);color:var(--tx);line-height:1.7}
+header{background:var(--c);color:#fff;padding:10px 16px;font-size:13px}
+header b{font-size:18px;display:block}
+main{max-width:960px;margin:0 auto;padding:16px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:20px 22px;min-height:440px}
+h2{margin:0 0 12px;color:var(--c);font-size:21px;border-left:6px solid var(--c);padding-left:10px}
+h3.sub{color:var(--c);font-size:17px;margin:14px 0 4px;border-bottom:2px solid var(--cl)}
+.lead{background:var(--cl);padding:8px 12px;border-radius:6px;margin:0 0 10px}
+ul{padding-left:0;list-style:none;margin:6px 0}
+li{padding:4px 0 4px 1.1em;position:relative;font-size:16.5px}
+li:before{content:"・";position:absolute;left:0;color:var(--c)}
+li.star,li.note,li.sub,li.q,li.num{padding-left:0}
+li.star:before,li.note:before,li.sub:before,li.q:before,li.num:before{content:""}
+li.star{background:#fff6dc;border-radius:6px;padding:6px 10px;margin:4px 0}
+li.note{font-size:14px;color:#555}
+li.q{color:var(--c);font-weight:bold}
+li.num{padding-left:1.4em;text-indent:-1.4em}
+.em{color:var(--c);font-weight:bold}
+.bl{cursor:pointer}
+.bl .a{display:inline-block;min-width:3em;border-bottom:2px solid var(--c);padding:0 4px;text-align:center;text-indent:0}
+.bl.closed .a{color:transparent;background:#e9f0f1}
+.bl.open .a{color:var(--red);font-weight:bold}
+.bl:before{content:"（"}.bl:after{content:"）"}
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:15.5px}
+th{background:var(--c);color:#fff;padding:6px 8px;text-align:left;white-space:nowrap}
+td{border-bottom:1px solid #d3dfe1;padding:6px 8px;vertical-align:top}
+td:first-child{white-space:nowrap;font-weight:bold;color:var(--c)}
+table.wrap td:first-child{white-space:normal;min-width:7em}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0}
+.box{border:2px solid var(--c);border-radius:8px;padding:10px 12px}
+.box h3{font-size:16.5px;color:#fff;background:var(--c);margin:-10px -12px 8px;padding:6px 12px;border-radius:5px 5px 0 0}
+.bars{margin:10px 0}
+.bt{font-weight:bold;color:var(--c);margin-bottom:4px}
+.bar{display:grid;grid-template-columns:10.5em 1fr;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.bar .t{display:flex;align-items:center;gap:8px}
+.bar .f{height:22px;background:var(--c);border-radius:4px;flex:none}
+.foot{font-size:13.5px;color:#555;margin-top:10px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0 6px}
+button{border:none;border-radius:6px;padding:9px 14px;font-size:15px;cursor:pointer;background:var(--c);color:#fff}
+button.sub{background:#fff;color:var(--c);border:2px solid var(--c)}
+#cnt{text-align:center;font-size:13.5px;color:#555;margin-top:8px}
+.dots{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:10px 0}
+.dot{width:13px;height:13px;border-radius:50%;background:#c6d5d8;cursor:pointer}
+.dot.on{background:var(--c)}
+@media(max-width:640px){.two{grid-template-columns:1fr}.card{padding:14px;min-height:0}li{font-size:15.5px}h2{font-size:18px}.bar{grid-template-columns:7.5em 1fr;font-size:14px}}
+</style>
+</head>
+<body>
+<header><span>高齢者と競技者の生理学（運動生理学を含む）｜第1章 Part B</span><b>1.2 現代人の生活状況の問題点</b></header>
+<main>
+<div class="card" id="sl"></div>
+<div id="cnt"></div>
+<div class="ctl">
+<button class="sub" onclick="prevSlide()">◀ 前へ</button>
+<button onclick="nextBlank()">次のカッコを開く</button>
+<button onclick="showAll()">すべて表示</button>
+<button class="sub" onclick="resetAll()">リセット</button>
+<button class="sub" onclick="nextSlide()">次へ ▶</button>
+</div>
+<div class="dots" id="dots"></div>
+</main>
+<script>
+const S=[
+{h:"1.2 現代人の生活状況の問題点",lead:"この節で学ぶこと",items:["ａ：生活習慣病とは","ｂ：生活習慣病の特徴（肥満／脂質代謝異常／糖尿病／高血圧）","ｃ：生活習慣病に対する運動の効果"]},
+{h:"ａ．生活習慣病とは",lead:"1995年以前は{{成人病}}と呼ばれていた一群の症候群",items:["{{生活習慣病}}：肥満，脂質代謝異常，糖尿病，高血圧，脳血管疾患，悪性新生物（がん），骨粗鬆症　など","★ 加齢よりも，食生活や運動，喫煙，ストレス等が深く関わる","Q：なぜ，成人病から生活習慣病に呼び名が変わったのか？"],afterH:"生活習慣病を引き起こす要因",after:["運動不足，過剰な栄養摂取，加齢，精神的ストレス","運動不足と過剰な栄養摂取は，加齢ではなく{{現代人の生活習慣}}によるもの"]},
+{h:"不健康な生活習慣は生活習慣病のリスクを増大",items:["運動不足・過食・喫煙","☆ 肥満・脂質代謝異常・糖尿病・高血圧の4つは自覚症状がなく，心血管疾患を引き起こし，生命を脅かすため[サイレントキラー]と呼ばれている"],bars:{t:"日本人の死因別死亡数の割合",rows:[["悪性新生物",30.0,"30.0％"],["心血管疾患",27.3,"27.3％"],["その他",23.8,"23.8％"],["肺炎",10.1,"10.1％"],["不慮の事故・自殺",9.0,"9.0％"]]},after:["☆ 心血管疾患による死亡率は悪性新生物に匹敵する","※ 心疾患や脳血管疾患を合わせて，心血管疾患という"]},
+{h:"ｂ．生活習慣病の特徴　１．肥満（栄養の過剰）",items:["{{症候性肥満}}：原因となる疾患があり，二次的に肥満となる","★ 肥満の95％は[単純性肥満]：摂取エネルギーが消費エネルギーを上回るために起こるもの","＊ 日本人の栄養摂取量はこの20年で変わっていないが，肥満者の数は増加している","　原因は？　⇒　[運動不足]","Q：なぜ運動不足になるのか？考えてみよう"],afterH:"肥満に対して警笛がならされるのはなぜか？",after:["☆ 肥満の程度が高いほど他の疾患を合併する確率が高まる","合併症を発症，もしくは近い将来発症すると見られる肥満　⇒　{{肥満症}}（医学的な治療を行う必要がある）"]},
+{h:"２．脂質代謝異常",items:["【血漿中に含まれる脂質】コレステロール，中性脂肪（トリグリセリド），リン脂質，遊離脂肪酸","{{リポタンパク}}（タンパク質と結合した形）：アポタンパクが脂質と結合したもの"],tbl:{wrap:true,head:["リポタンパクの種類","英語表記","対応"],rows:[["低比重リポタンパク","LDL：low density lipoprotein","LDLコレステロール"],["高比重リポタンパク","HDL：high density lipoprotein","HDLコレステロール"],["超低比重リポタンパク","VLDL：very low density lipoprotein","中性脂肪"]]},after:["LDLコレステロールと HDLコレステロールは通常　6：4","★ 脂質代謝異常症とは，血中に含まれる脂質の組成が正常でない症状（空腹時の血漿中の脂質の濃度から判定）"]},
+{h:"脂質代謝異常の判定基準",tbl:{wrap:true,head:["基準（空腹時）","判定"],rows:[["LDLコレステロールが 140mg/dl 以上","高LDLコレステロール血症"],["HDLコレステロールが 40mg/dl 未満","低HDLコレステロール血症"],["中性脂肪が 150mg/dl 以上","高トリグリセリド血症"]]},after:["★ [動脈硬化]の危険因子となる","{{心筋梗塞，脳梗塞，大動脈瘤，眼底出血}}等を起こす原因となる"],foot:"血漿中の総コレステロール値の増加とともに，冠動脈疾患の発生率は指数関数的に増加する"},
+{h:"３．糖尿病",lead:"インスリンというホルモンの作用が低下したため，体内に取り入れられた栄養素がうまく利用されず，血液中のブドウ糖（血糖）が多くなっている状態",items:["血糖　＝　血漿中の{{グルコース}}","＜原因＞　インスリンが足りない／インスリンが効かない","＜診断基準＞　次のいずれか","　・空腹時の血糖値が {{126mg/dl}} 以上","　・グルコース負荷試験（75g経口摂取）の2時間後に {{200mg/dl}} 以上"],afterH:"ろ過のしくみと尿糖",after:["糖：尿細管ですべて再吸収される　⇒　{{尿中}}にグルコースは検出されない","腎臓の能力を上回る濃度のグルコース　⇒　尿とともにグルコースが排泄される　⇒　{{尿糖}}"]},
+{h:"糖尿病の種類",lead:"原因によって2種類に分けられる",tbl:{wrap:true,head:["種類","特徴","別名"],rows:[["1型糖尿病","何らかの理由でβ細胞が破壊され，インスリンがほとんど分泌されなくなり発症する","インスリン依存型"],["2型糖尿病","インスリンは分泌されているが，血糖値が低下しない","インスリン非依存型"]]},after:["★ 肥満者では[2型]糖尿病に罹患する比率が高い","★ 糖尿病の進行　⇒　血管障害や失明，腎不全などの合併症を引き起こす","{{太い血管}}が傷つくと…プラークができ，破裂すると脳梗塞や心筋梗塞などが起こる可能性が高まる","{{細い血管}}が傷つくと…網膜症や腎障害，神経障害などが起こる可能性が高まる"],foot:"血管の図：公益社団法人日本糖尿病協会HPより（ノート参照）"},
+{h:"４．高血圧　―　血圧とは",lead:"血圧：血管壁にかかる側圧（血管壁を押している圧力の強さのこと）",tbl:{wrap:true,head:["名称","内容"],rows:[["最高血圧（収縮期血圧，SBP）","心臓の収縮時に発生する圧力"],["最低血圧（拡張期血圧，DBP）","心臓の拡張時に発生する圧力"]]},after:["収縮期／拡張期で表す　　例：120／60 mmHg","※ 血管の場所によって血圧は異なる。最も高いのは左心室の出口で，そこから離れるに従って下がっていく","※ 身体の隅々まで血液を供給するには，ある程度の血圧が必要"]},
+{h:"高血圧の基準と脈圧",items:["★ 高血圧：収縮期血圧[140]mmHg以上　または　拡張期血圧[90]mmHg以上","（95％が{{本態性高血圧}}：原因がはっきりしない）","脈圧とは？　⇒　{{収縮期血圧と拡張期血圧の差}}","★ 脈圧が大きい　→　大動脈硬化のリスクが高い（高齢者の特徴でもある）"],afterH:"高血圧はなぜ悪い？",after:["血圧が高い状態　→　血管の内側が傷つきやすくなる","血圧が高いほど脳卒中，心筋梗塞，心疾患の罹患率および{{死亡率}}が高い"]},
+{h:"ｃ．運動の効果　１．肥満への効果",items:["摂取エネルギーの減少／消費エネルギーの増加　…このどちらか，または両方","消費エネルギーの約70％は安静時代謝　→　[骨格筋]が熱を産生するために必要なエネルギー","筋量減少　＝　安静時代謝低下","Q：つまり減量で大切なことは？","★ 筋量を減少させることなく，体脂肪を低下させること"],afterH:"減量プログラムが身体組成に及ぼす影響",after:["16週間の減量プログラム（消費エネルギーが摂取エネルギーを 500kcal/日 上回るように実施）","体重の減少は3群とも同程度だが，体脂肪の減少は{{運動群と併用群}}で多い","食事群の体重減少では{{除脂肪体重}}が減っている　⇒　筋量の低下が含まれている"],foot:"グラフはノートで確認しよう"},
+{h:"２．脂質代謝異常への効果",lead:"運動　⇒　10週間程度の運動の継続",items:["総コレステロールの低下","[中性脂肪]の低下（特に変化が顕著）","HDLコレステロールの増加"],afterH:"しくみ",after:["運動すると　⇒　{{ホルモン感受性リパーゼ}}が活性化（アドレナリンに反応）","ホルモン感受性リパーゼは中性脂肪を分解する　⇒　中性脂肪がエネルギーに使用される","VLDL（中性脂肪）の量が減少すると，HDLの合成が促進される","★ 上記の変化は脂質代謝異常でない人にも見られる　⇒　脂質代謝異常の{{予防にもなる}}"]},
+{h:"３．糖尿病への効果",lead:"筋がグルコースを取り込む速度には個人差がある",tbl:{head:["取り込む速度","インスリン感受性"],rows:[["速い","インスリン感受性が高い　→　血糖値が低下しやすい"],["遅い","インスリン感受性が低い　→　血糖値が低下しにくい"]]},after:["運動　⇒　健常者，2型糖尿病者の両者で{{インスリン感受性が高まる}}","※ 糖尿病患者ではインスリン抵抗性が改善する","★ 運動習慣を身につけることは，糖尿病の予防や治療につながる","★ 歩行速度の速い人ほど糖尿病の発症率が低下する"]},
+{h:"運動の短期効果と慢性効果",two:[{h:"① 短期効果（急性代謝効果）",items:["食後30分から2時間の間に運動　⇒　急激な血糖の上昇（{{食後高血糖}}）を抑える","★ 2型糖尿病患者は，血糖値やインスリン濃度がピークに達する{{食後30〜60分}}に運動をするのが望ましい","★ 食後高血糖は動脈硬化を促進する原因でもある"]},{h:"② 慢性効果（中・長期的効果）",items:["インスリン抵抗性の改善効果は，3日で低下し，1週間でほとんど消失する","★ 長期的な上昇防止には，継続的な運動習慣が大切","★ 運動の継続により，インスリンが関与しない糖の取り込みも改善される　＝　{{筋}}によるグルコースの取り込み"]}],foot:"健常人では糖の7割が骨格筋で利用されている（糖尿病患者では約半分）"},
+{h:"運動をすると運動筋に糖を取り込めるのはなぜ？",items:["筋肉で糖を取り込むのに重要な[GLUT4]","インスリンが骨格筋の細胞膜表面の受容体に結合　→　GLUT4 が細胞膜へトランスポートし，糖を取り込む","★ 骨格筋では，運動によってインスリンがなくても GLUT4 が細胞表面に移動するので，骨格筋へのグルコースの取り込みが増大する"],tbl:{wrap:true,head:["効果","内容"],rows:[["急性効果","筋収縮によって GLUT4 が[細胞膜へ移動]して，糖を取り込む"],["慢性効果","骨格筋の[GLUT4量の増加]（鍛えられた筋では2倍以上の増加）"]]}},
+{h:"肥満の人が糖尿病になる原因",items:["肥満により遊離脂肪酸の血中濃度が上昇","　↓","GLUT4 が細胞膜上にトランスポートできない","　↓","糖を取り込めない　→　{{血糖値上昇}}　→　糖尿病"],after:["※ インスリンが分泌されると筋肉（細胞）は糖の取り込みを始めるが，遊離脂肪酸の濃度が高いと阻害してしまう"]},
+{h:"４．高血圧への効果",items:["治療：薬物療法（降圧剤）／生活習慣改善","数週間の運動で，収縮期血圧・拡張期血圧ともに {{5〜10mmHg}} 低下","心拍出量と末梢血管抵抗の低下"],afterH:"運動の行い方",after:["運動の頻度は毎日定期的に実施し，運動量は30分以上，強度は中等度（ややきつい）の有酸素運動が一般的","運動時には血圧が上昇するので，中等度以上の高血圧では薬物療法，または軽めの運動を短く行う","★ 高血圧では[強度の高い運動]（ウェイトトレーニングなど）は避けた方が良い"]}
+];
+let cur=0;const opened=S.map(()=>new Set());
+function fmt(s){return String(s).replace(/\{\{(.+?)\}\}/g,'<span class="em">$1</span>').replace(/\[(.+?)\]/g,'<span class="bl closed"><span class="a">$1</span></span>');}
+function li(s){let c='';if(/^[★☆]/.test(s))c='star';else if(/^※/.test(s))c='note';else if(/^Q：/.test(s))c='q';else if(/^[①-⑩]/.test(s))c='num';else if(/^　/.test(s))c='sub';return '<li class="'+c+'">'+fmt(s)+'</li>';}
+function ul(a){return '<ul>'+a.map(li).join('')+'</ul>';}
+function blanks(){return Array.from(document.querySelectorAll('#sl .bl'));}
+function setOpen(b,on){b.classList.toggle('open',on);b.classList.toggle('closed',!on);}
+function render(){
+ const d=S[cur];let h='<h2>'+fmt(d.h)+'</h2>';
+ if(d.lead)h+='<div class="lead">'+fmt(d.lead)+'</div>';
+ if(d.items)h+=ul(d.items);
+ if(d.two)h+='<div class="two">'+d.two.map(b=>'<div class="box"><h3>'+fmt(b.h)+'</h3>'+ul(b.items)+'</div>').join('')+'</div>';
+ if(d.tbl)h+='<div class="tw"><table'+(d.tbl.wrap?' class="wrap"':'')+'><tr>'+d.tbl.head.map(x=>'<th>'+x+'</th>').join('')+'</tr>'+d.tbl.rows.map(r=>'<tr>'+r.map(x=>'<td>'+fmt(x)+'</td>').join('')+'</tr>').join('')+'</table></div>';
+ if(d.bars){const m=Math.max(...d.bars.rows.map(r=>r[1]));h+='<div class="bars"><div class="bt">'+d.bars.t+'</div>'+d.bars.rows.map(r=>'<div class="bar"><span>'+r[0]+'</span><div class="t"><div class="f" style="width:'+(r[1]/m*60)+'%"></div><span>'+r[2]+'</span></div></div>').join('')+'</div>';}
+ if(d.afterH)h+='<h3 class="sub">'+fmt(d.afterH)+'</h3>';
+ if(d.after)h+=ul(d.after);
+ if(d.foot)h+='<div class="foot">'+fmt(d.foot)+'</div>';
+ document.getElementById('sl').innerHTML=h;
+ blanks().forEach((b,i)=>{setOpen(b,opened[cur].has(i));b.onclick=()=>{const on=!opened[cur].has(i);if(on)opened[cur].add(i);else opened[cur].delete(i);setOpen(b,on);upd();};});
+ document.querySelectorAll('.dot').forEach((x,i)=>x.classList.toggle('on',i===cur));
+ upd();
+}
+function upd(){const n=blanks().length;document.getElementById('cnt').textContent=(cur+1)+' / '+S.length+'　｜　'+(n?opened[cur].size+'/'+n+' 表示済み':'参照用スライド（カッコなし）');}
+function nextBlank(){const bs=blanks();for(let i=0;i<bs.length;i++){if(!opened[cur].has(i)){opened[cur].add(i);setOpen(bs[i],true);break;}}upd();}
+function showAll(){blanks().forEach((b,i)=>{opened[cur].add(i);setOpen(b,true);});upd();}
+function resetAll(){opened[cur].clear();blanks().forEach(b=>setOpen(b,false));upd();}
+function goSlide(i){if(i<0||i>=S.length)return;cur=i;render();window.scrollTo(0,0);}
+function prevSlide(){goSlide(cur-1);}
+function nextSlide(){goSlide(cur+1);}
+document.getElementById('dots').innerHTML=S.map((_,i)=>'<span class="dot" onclick="goSlide('+i+')" title="'+(i+1)+'"></span>').join('');
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')nextSlide();if(e.key==='ArrowLeft')prevSlide();});
+render();
+</script>
+</body>
+</html>
